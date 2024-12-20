@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Xoa bai viet</title>
+</head>
+<body>
+<h1>Xoa bai viet</h1>
+<form method="post">
+  {% csrf_token %}
+  <label>Ban co chac chan xoa bai {{post.title}}</label>
+  <button type="submit">Xoa</button>
+</form>
+<a href="{% url 'post_list' %}">Quay lai danh sach</a>
+</body>
+</html>

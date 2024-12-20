@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Danh sach bai viet</title>
+</head>
+<body>
+<h1>Danh sach bai viet</h1>
+<a href="{% url 'create_post' %}">Tao bai viet</a>
+<ul>
+  {% for post in posts %}
+    <li>
+      <a href="{% url 'post_detail' post.id %}">{{post.title}}</a> - {{post.created_at}}
+      <a href="{% url 'delete_post' post.id %}">Xoa bai viet</a>
+    </li>
+  {% endfor %}
+</ul>
+</body>
+</html>

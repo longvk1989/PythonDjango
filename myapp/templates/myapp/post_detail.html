@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Chi tiet bai viet</title>
+</head>
+<body>
+<h1>Chi tiet bai viet</h1>
+<form method="post">
+    {% csrf_token %}
+    <label for="title">Tieu de:</label>
+    <input type="text" name="title" id="title" value="{{post.title}}" required>
+    <label for="content">Noi dung:</label>
+    <textarea name="content" id="content" required>{{post.content}}</textarea>
+    <button type="submit">Chinh sua</button>
+</form>
+<a href="{% url 'post_list' %}">Quay lai danh sach</a>
+</body>
+</html>
