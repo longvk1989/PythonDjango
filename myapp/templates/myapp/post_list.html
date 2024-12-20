@@ -7,6 +7,7 @@
 <body>
 <h1>Danh sach bai viet</h1>
 <a href="{% url 'create_post' %}">Tao bai viet</a>
+{% if posts %}
 <ul>
   {% for post in posts %}
     <li>
@@ -15,5 +16,10 @@
     </li>
   {% endfor %}
 </ul>
+{% else %}
+  <p>Ban khong co bai viet nao</p>
+{% endif %}
+
+<a href="{% url 'logout' %}">Dang xuat</a>
 </body>
 </html>
