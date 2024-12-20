@@ -7,9 +7,9 @@
 <body>
 <h1>Danh sach bai viet</h1>
 <a href="{% url 'create_post' %}">Tao bai viet</a>
-{% if posts %}
+{% if page_obj %}
 <ul>
-  {% for post in posts %}
+  {% for post in page_obj %}
     <li>
       <a href="{% url 'post_detail' post.id %}">{{post.title}}</a> - {{post.created_at}}
       <a href="{% url 'delete_post' post.id %}">Xoa bai viet</a>
@@ -19,6 +19,24 @@
 {% else %}
   <p>Ban khong co bai viet nao</p>
 {% endif %}
+
+<div>
+  <p>
+    Trang {{page_obj.number}} Tren {{page_obj.paginator.num_pages}}
+  </p>
+</div>
+
+<div>
+  {% if page_obj.has_previous %}
+    <a href="?page=1">First</a>
+    <a href="?page={{page_obj.previous_page_number}}">Previous</a>
+  {% endif %}
+
+  {% if page_obj.has_next %}
+    <a href="?page={{page_obj.next_page_number}}">Next</a>
+    <a href="?page={{page_obj.paginator.num_pages}}">Last</a>
+  {% endif %}
+</div>
 
 <a href="{% url 'logout' %}">Dang xuat</a>
 </body>

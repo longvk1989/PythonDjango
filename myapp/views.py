@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
+from django.core.paginator import Paginator
 from .models import Post
 
 from django.contrib.auth.models import User
@@ -16,7 +17,10 @@ def hello_html(request):
 @login_required
 def post_list(request):
     posts = Post.objects.filter(user=request.user).order_by('-id')
-    return render(request, 'myapp/post_list.html', {'posts': posts})
+    paginator = Paginator(posts, 5)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    return render(request, 'myapp/post_list.html', {'page_obj': page_obj})
 
 @login_required
 def create_post(request):
